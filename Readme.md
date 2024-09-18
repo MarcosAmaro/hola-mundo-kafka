@@ -1,7 +1,3 @@
-Aquí tienes un ejemplo de un README para tu proyecto en GitHub:
-
----
-
 # Noticias en tiempo real con Kafka, Spring Boot, Python, y React
 
 Este proyecto es un sistema de transmisión en tiempo real de noticias utilizando Kafka como broker de mensajes. El sistema incluye:
