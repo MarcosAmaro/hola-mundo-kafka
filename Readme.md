@@ -33,10 +33,16 @@ Este proyecto es un sistema de transmisión en tiempo real de noticias utilizand
 ### 1. Kafka
 Para ejecutar el proyecto es necesario tener Kafka corriendo en local o en un entorno de red accesible. Si no tienes Kafka instalado, sigue estas instrucciones:
 
-1. Descarga e instala [Kafka](https://kafka.apache.org/quickstart).
-2. Inicia el servidor de Kafka:
+#### Con docker
+1. Ejecutar el docker-compose-kafka.yml
    ```bash
-   # Inicia Zookeeper (si es necesario)
+   docker compose -f docker-compose-kafka.yml up -d
+   ```
+#### Para una instalación sin docker 
+1. Descargar e instalar [Kafka](https://kafka.apache.org/quickstart).
+2. Iniciar el servidor de Kafka:
+   ```bash
+   # Inicia Zookeeper (si es necesario, las nuevas versinoes de Kafka no lo requieren)
    bin/zookeeper-server-start.sh config/zookeeper.properties
    
    # Inicia Kafka
@@ -48,7 +54,9 @@ Para ejecutar el proyecto es necesario tener Kafka corriendo en local o en un en
    ```bash
    pip install kafka-python
    ```
-
+   ```bash
+   pip install schedule
+   ```
 2. Ejecuta el productor que enviará las noticias:
    ```bash
    python producer.py
@@ -64,7 +72,7 @@ El script `producer.py` generará y enviará noticias en formato JSON con la sig
 ```
 
 ### 3. Consumer (Spring Boot)
-1. El consumidor está configurado como un Bean en una clase. 
+1. El consumidor está configurado en el application.properties para un kafka corriendo en docker. 
 
 2. Compila y ejecuta el proyecto:
    ```bash
@@ -91,3 +99,7 @@ La aplicación React se conectará automáticamente al WebSocket proporcionado p
 1. El productor de Python genera y envía mensajes de noticias a un tópico de Kafka.
 2. El consumidor de Java con Spring Boot consume los mensajes en tiempo real y utiliza un WebSocket para enviarlos a la aplicación React.
 3. La aplicación React recibe los mensajes y los renderiza como tarjetas en su interfaz.
+
+## Kafbat UI
+
+Si se levanta con el docker-compose-kafka.yml, se puede acceder a la UI de Kafka en http://localhost:9090
