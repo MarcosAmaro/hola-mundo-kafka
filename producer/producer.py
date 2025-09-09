@@ -4,7 +4,7 @@ import schedule, json, random, string, time
 
 #Instancia un productor
 producer = KafkaProducer(	
-						 bootstrap_servers="localhost:9092",
+						 bootstrap_servers="localhost:29092",
                          value_serializer=lambda m: json.dumps(m).encode('utf-8')
 						)
 
